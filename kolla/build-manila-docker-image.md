@@ -1,4 +1,4 @@
-penStack Kolla Hands-on
+# OpenStack Kolla Hands-on
 
 ## Prerequisites
 
@@ -25,7 +25,6 @@ penStack Kolla Hands-on
 ## Build Docker image
 
 According [guide](http://docs.openstack.org/developer/kolla/image-building.html)
-or [doc](https://github.com/openstack/kolla/blob/master/doc/manila-guide.rst)
 
 * Install tox
 
@@ -2046,5 +2045,3 @@ for example manila-api
 
     (venv) [vagrant@localhost manila]$ deactivate 
     [vagrant@localhost manila]$ 
-
-
