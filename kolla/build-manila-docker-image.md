@@ -1963,6 +1963,8 @@ Long-time building
 
 * Show images
 
+Filter kolla building only
+
     (venv) [vagrant@localhost kolla]$ docker images --filter label=kolla_version
     REPOSITORY                                                TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
     hub.qingyuanos.com/admin/ubuntu-binary-manila-api         mitaka              cff503c26edd        6 minutes ago       431.2 MB
