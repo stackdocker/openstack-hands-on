@@ -49,6 +49,8 @@ From [Aliyun mirror](http://mirrors.aliyun.com)
 
 * Show genconfig
 
+Investigate output
+
     [vagrant@localhost kolla]$ tox -e genconfig --showconfig
     ;;;
     [testenv:genconfig]
@@ -76,6 +78,8 @@ From [Aliyun mirror](http://mirrors.aliyun.com)
 
 * Generate config (failure resolving)
 
+Because lack python development environment
+
     [vagrant@localhost kolla]$ tox -e genconfig
     ;;;
         src/MD2.c:31:20: 致命错误：Python.h：没有那个文件或目录
@@ -90,7 +94,7 @@ From [Aliyun mirror](http://mirrors.aliyun.com)
 
     [vagrant@localhost kolla]$ sudo dnf install -yq python-devel
 
-* Generate config (succeeded)
+Re-generate
 
     [vagrant@localhost kolla]$ tox -e genconfig
     genconfig create: /data/src/github.com/openstack/kolla/.tox/genconfig
@@ -104,6 +108,8 @@ From [Aliyun mirror](http://mirrors.aliyun.com)
       congratulations :)
 
 * Create a virtualenv and install into
+
+Wont install package into /usr/local/lib
 
     [vagrant@localhost kolla]$ virtualenv venv
     New python executable in /data/src/github.com/openstack/kolla/venv/bin/python
@@ -154,10 +160,14 @@ From [Aliyun mirror](http://mirrors.aliyun.com)
       Running setup.py install for kolla ... done
     Successfully installed Babel-2.3.4 GitPython-2.0.5 Jinja2-2.8 MarkupSafe-0.23 beautifulsoup4-4.4.1 debtcollector-1.5.0 docker-py-1.7.2 funcsigs-1.0.2 gitdb-0.6.4 graphviz-0.4.10 kolla-3.0.0.0b2.dev102 netaddr-0.7.18 oslo.config-3.11.0 oslo.i18n-3.7.0 pbr-1.10.0 pycrypto-2.6.1 pytz-2016.4 requests-2.10.0 six-1.10.0 smmap-0.9.0 stevedore-1.15.0 websocket-client-0.37.0 wrapt-1.10.8
 
+Image could be build
+
     (venv) [vagrant@localhost kolla]$ ls docker
     aodh        ceph    designate      glance   heat     ironic      keystone       magnum   memcached  murano   openstack-base  rally   tempest  zaqar
     base        cinder  dind           gnocchi  heka     iscsid      kibana         manila   mistral    neutron  openvswitch     sahara  tgtd
     ceilometer  cron    elasticsearch  haproxy  horizon  keepalived  kolla-toolbox  mariadb  mongodb    nova     rabbitmq        swift   trove
+    
+Long-time building
     
     (venv) [vagrant@localhost kolla]$ kolla-build --base=ubuntu --registry=hub.qingyuanos.com --namespace=admin --tag=mitaka manila
     INFO:kolla.image.build:Found the docker image folder at /data/src/github.com/openstack/kolla/venv/share/kolla/docker
@@ -1968,6 +1978,8 @@ for example manila-api
 
 * Run in default user manila
 
+From VM
+
     (venv) [vagrant@localhost kolla]$ docker run --rm -t -i hub.qingyuanos.com/admin/ubuntu-binary-manila-api:mitaka /bin/bash
     ()[manila@cabdc531f9bc /]$ manila --version
     1.8.1
@@ -2015,6 +2027,8 @@ for example manila-api
     exit
     
 * Run in root
+
+Because dont know password of user manila
 
     (venv) [vagrant@localhost kolla]$ docker run --rm -t -i -u root hub.qingyuanos.com/admin/ubuntu-binary-manila-api:mitaka /bin/bash
     ()[root@0bb93583b4fb /]# cat /usr/local/bin/kolla_extend_start
